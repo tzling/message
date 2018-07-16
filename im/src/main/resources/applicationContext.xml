@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    <context:annotation-config/>
+    <context:property-placeholder location="classpath:config.properties" ignore-unresolvable="true"/>
+    <import resource="applicationContext-redis.xml"/>
+    <import resource="applicationContext-web.xml"/>
+    <bean id="config" class="com.tzl.entity.Config">
+        <property name="splitString" value="${splitString}"/>
+        <property name="port" value="${port}"/>
+        <property name="seconds" value="${seconds}"/>
+        <property name="keyPath" value="${keyPath}"/>
+        <property name="keyPass" value="${keyPass}"/>
+    </bean>
+    <bean id="messageListen" class="com.tzl.run.MessageListen"/>
+</beans>
