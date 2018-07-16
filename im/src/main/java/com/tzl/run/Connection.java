@@ -1,6 +1,5 @@
 package com.tzl.run;
 
-import com.tzl.controller.ControllerHandler;
 import com.tzl.entity.Config;
 import com.tzl.handler.MessageChannelInitializer;
 import com.tzl.util.ClassUtils;

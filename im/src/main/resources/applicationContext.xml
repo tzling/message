@@ -12,6 +12,8 @@
     <import resource="applicationContext-web.xml"/>
     <bean id="config" class="com.tzl.entity.Config">
         <property name="splitString" value="${splitString}"/>
+        <property name="IP" value="${ip}"/>
+        <property name="nameServerAddr" value="${nameAddress}"/>
         <property name="port" value="${port}"/>
         <property name="seconds" value="${seconds}"/>
         <property name="keyPath" value="${keyPath}"/>

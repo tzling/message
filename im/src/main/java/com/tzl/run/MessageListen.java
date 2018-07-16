@@ -24,6 +24,7 @@ public class MessageListen extends Connection {
     public void consumer(){
         String group = "MessageConsumer";
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(group);
+        consumer.setNamesrvAddr(config.getNameServerAddr());
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         consumer.setMessageModel(MessageModel.BROADCASTING);
         try {
