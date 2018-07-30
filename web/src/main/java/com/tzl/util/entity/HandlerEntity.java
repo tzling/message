@@ -1,4 +1,4 @@
-package com.tzl.controller.Entity;
+package com.tzl.util.entity;
 
 import java.lang.reflect.Type;
 import java.util.Map;

@@ -1,8 +1,7 @@
-package com.tzl.controller;
+package com.tzl.util;
 
-import com.tzl.controller.Entity.HandlerEntity;
 import com.tzl.routing.RequestMapping;
-import com.tzl.util.ClassUtils;
+import com.tzl.util.entity.HandlerEntity;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Controller;
 
@@ -15,15 +14,24 @@ import java.util.concurrent.ConcurrentMap;
 
 
 
-public class ControllerHandler {
-    private static final ConcurrentMap<String,HandlerEntity> requestMapping = new ConcurrentHashMap<>();
+public class ControllerRegistration {
+    private ConcurrentMap<String,HandlerEntity> requestMapping = new ConcurrentHashMap<>();
 
+    public ConcurrentMap<String, HandlerEntity> getRequestMapping() {
+        return requestMapping;
+    }
+    /**
+    * 初始化方法
+    * */
     public void init() throws IllegalAccessException, InstantiationException, ClassNotFoundException, IOException {
         String path = "com.tzl.controller";
         List<String> classPaths = ClassUtils.getClassName(path,true);
         isClass(classPaths);
     }
 
+    /**
+    * 注册控制器
+    * */
     private void isClass(List<String> classList) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         for (String cls : classList) {
             Class c = Class.forName(cls);
@@ -34,6 +42,9 @@ public class ControllerHandler {
             }
         }
     }
+    /**
+    * 解析控制器方法
+    * */
     private void setRequestEntity(String cls,Class c){
         String className = cls.substring(0,1).toLowerCase()+cls.substring(1);
         RequestMapping mapping = (RequestMapping) c.getAnnotation(RequestMapping.class);
@@ -67,10 +78,5 @@ public class ControllerHandler {
                 requestMapping.put(builder.toString(),entity);
             }
         }
-    }
-    public static void main(String[] args) throws ClassNotFoundException, IOException, InstantiationException, IllegalAccessException {
-        ControllerHandler handler = new ControllerHandler();
-        handler.init();
-        System.out.println(handler.requestMapping);
     }
 }

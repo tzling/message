@@ -14,7 +14,6 @@ public class Message {
     private String uniqueId;
     private String uid;
     private String oid;
-    private int type;
     private Integer time;
     private String routing;
     private String body;
@@ -39,14 +38,6 @@ public class Message {
 
     public void setOid(String oid) {
         this.oid = oid;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
     }
 
     public Integer getTime() {
